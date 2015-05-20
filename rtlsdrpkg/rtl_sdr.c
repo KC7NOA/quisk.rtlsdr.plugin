@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "rtl-sdr.h"
 
+#define ADJUSTMENT 1
 #define IMPORT_QUISK_API
 #include "quisk.h"
 
@@ -36,7 +37,7 @@ static int quisk_read_rtlsdr(complex double *samp)
 
 static PyObject * open_samples(PyObject * self, PyObject * args)
 {
-    out_block_size = 16384 * decimation / 4;
+    out_block_size = 16384 * decimation / ADJUSTMENT;
     printf("out block size = %d\n", out_block_size);
     buffer = malloc(out_block_size * sizeof(uint8_t));
     rtlsdr_open(&dev, (uint32_t)dev_index);
