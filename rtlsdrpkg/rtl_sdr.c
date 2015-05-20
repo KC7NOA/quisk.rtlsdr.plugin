@@ -36,7 +36,7 @@ static int quisk_read_rtlsdr(complex double *samp)
 
 static PyObject * open_samples(PyObject * self, PyObject * args)
 {
-    out_block_size = 16384 * decimation;
+    out_block_size = 16384 * decimation / 4;
     printf("out block size = %d\n", out_block_size);
     buffer = malloc(out_block_size * sizeof(uint8_t));
     rtlsdr_open(&dev, (uint32_t)dev_index);

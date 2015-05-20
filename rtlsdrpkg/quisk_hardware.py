@@ -19,9 +19,8 @@ class Hardware(BaseHardware):
             self.decimation = 20
         else:
             raise Exception
-        self.rf_gain_labels = ('Auto','0','3','6','9','10','20','25','30','40','50') 
-        self.vfo = getattr(conf, "freq", None)
-        self.tune = self.vfo
+        self.rf_gain_labels = ('Auto','50','40','30','20','10', '6', '3', '0')
+        self.tune = self.vfo = getattr(conf, "freq", None)
 
     def ChangeFrequency(self, tune, vfo, source='', band='', event=None):
         if vfo != self.vfo:
