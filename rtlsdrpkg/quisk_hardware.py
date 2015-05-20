@@ -20,18 +20,20 @@ class Hardware(BaseHardware):
         else:
             raise Exception
         self.rf_gain_labels = ('Auto','50','40','30','20','10', '6', '3', '0')
-        self.tune = self.vfo = getattr(conf, "freq", None)
+        self.freq = getattr(conf, "freq", None)
+        self.vfo = None
 
     def ChangeFrequency(self, tune, vfo, source='', band='', event=None):
+        if self.freq:
+            tune = vfo = self.freq
+            self.freq = None
         if vfo != self.vfo:
             rtl_sdr.set_center_frequency(vfo)
             self.vfo = vfo
-        if tune != self.tune:
-            self.tune = tune
-        return self.tune, self.vfo
+        return tune, self.vfo
 
     def ReturnFrequency(self):
-        return self.tune, self.vfo
+        return None, self.vfo
 
     def open(self):
         rtl_sdr.set_decimation(self.decimation)
@@ -39,8 +41,6 @@ class Hardware(BaseHardware):
         rtl_sdr.set_sample_rate(960000)
         rtl_sdr.set_sampling_mode(self.sampling_mode)
         rtl_sdr.set_auto_gain()
-        if self.vfo:
-            rtl_sdr.set_center_frequency(self.vfo)
 
     def close(self):
         rtl_sdr.close_samples()
@@ -52,7 +52,5 @@ class Hardware(BaseHardware):
             rtl_sdr.set_tuner_gain(10*int(self.rf_gain_labels[n]))
         else:
             rtl_sdr.set_auto_gain()
-
-
 
 
