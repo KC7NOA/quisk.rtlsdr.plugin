@@ -20,16 +20,19 @@ class Hardware(BaseHardware):
         else:
             raise Exception
         self.rf_gain_labels = ('Auto','0','3','6','9','10','20','25','30','40','50') 
-        self.vfo = None
+        self.vfo = getattr(conf, "freq", None)
+        self.tune = self.vfo
 
     def ChangeFrequency(self, tune, vfo, source='', band='', event=None):
         if vfo != self.vfo:
             rtl_sdr.set_center_frequency(vfo)
             self.vfo = vfo
-        return tune, self.vfo
+        if tune != self.tune:
+            self.tune = tune
+        return self.tune, self.vfo
 
     def ReturnFrequency(self):
-        return None, self.vfo
+        return self.tune, self.vfo
 
     def open(self):
         rtl_sdr.set_decimation(self.decimation)
@@ -37,6 +40,8 @@ class Hardware(BaseHardware):
         rtl_sdr.set_sample_rate(960000)
         rtl_sdr.set_sampling_mode(self.sampling_mode)
         rtl_sdr.set_auto_gain()
+        if self.vfo:
+            rtl_sdr.set_center_frequency(self.vfo)
 
     def close(self):
         rtl_sdr.close_samples()
@@ -51,54 +56,4 @@ class Hardware(BaseHardware):
 
 
 
-
-
-
-
-
-
-
-
-
-"""
-# from rtlsdr import RtlSdr
-
-class RtlSdr(object):
-    def set_sample_rate(self, rate):
-        print "setting sample rate to", rate
-        pass
-    def set_center_freq(self, freq):
-        pass
-    def set_direct_sampling(self, direct):
-        pass
-    def set_gain(self, gain):
-        pass
-    def close(self):
-        pass
-
-    def VarDecimGetChoices(self):         # return text labels for the control
-        l = []              # a list of sample rates
-        for dec in range(self.max_decimation):
-            l.append(str(int(float(self.sample_rate) / (dec + 1))))
-        print "choices", l
-        return l
-
-    def VarDecimGetLabel(self):           # return a text label for the control
-        print "get label"
-        return "Sample rate ksps"
-
-    def VarDecimGetIndex(self):           # return the current index
-        print "get index", self.index
-        return self.index
-
-    def VarDecimSet(self, index=None):            # set decimation, return sample 
-        if index is None:   # initial call to set decimation before the call to open()
-            print "reset decimation", index
-            index = self.decimation - 1
-        self.index = index
-        dec = index + 1
-        rtl_sdr.set_decimation(dec)
-        print "setting to decimation", dec
-        return int(float(self.sample_rate) / dec + .5)
-"""
 
