@@ -10,7 +10,7 @@ A Proof of Concept RTL2832u Plugin for the SDR Software Quisk
 
 3) In addition, copy the rtlsdrpkg directory provided by this repo into the quisk-3.6.22 source tree.
 
-4) Also copy configuration file rtlsdrpkg/quisk_conf.py to ~/.quisk_conf.py.
+4) Also copy configuration file quisk_conf.py to ~/.quisk_conf.py.
 
 5) Then either,
 
