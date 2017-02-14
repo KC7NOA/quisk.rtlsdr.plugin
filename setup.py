@@ -4,7 +4,7 @@ import sys
 # You must define the version here.  A title string including
 # the version will be written to __init__.py and read by quisk.py.
 
-Version = '3.6.22'
+Version = '3.6.3'
 
 fp = open("__init__.py", "w")	# write title string
 fp.write("#QUISK version %s\n" % Version)
@@ -14,7 +14,7 @@ module1 = Extension ('quisk._quisk',
 	#include_dirs = ['.'],
 	#library_dirs = ['.'],
 	libraries = ['asound', 'portaudio', 'pulse-simple', 'fftw3', 'm'],
-	sources = ['quisk.c', 'sound.c', 'sound_alsa.c', 'sound_portaudio.c', 'sound_pulseaudio.c',
+	sources = ['quisk.c', 'sound.c', 'sound_alsa.c', 'sound_portaudio.c',
 		'is_key_down.c', 'microphone.c', 'utility.c',
 		'filter.c', 'extdemod.c'],
 	)
