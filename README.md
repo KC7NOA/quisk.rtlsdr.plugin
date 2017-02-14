@@ -33,6 +33,7 @@ To support Quisk sampling Display rates of 192000, 96000, and 48000 the raw samp
 No filtering before decimation is performed.  I am not good enough at digital FIR filtering to know the best coefficients or number of taps to use.  I did experiments with a raised cosine filter with 5 taps but the results did not seem acceptable.  Please submit a pull request if you can help.
 
 George Magiros
+KC7NOA = KC7NOA at gee male bop com
 
 18 May 2015
 
