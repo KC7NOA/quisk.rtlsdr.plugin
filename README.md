@@ -4,11 +4,12 @@ A Proof of Concept RTL2832u Plugin for the SDR Software Quisk
 
 0) As a preliminary matter, make sure the rtl-sdr software library from osmocom is installed, that dvd_usb_rtl28xxu is blacklisted, and, optionally, that non-root users can access the RTLSDR hardware device through the appropriate udev rules.
 
-1) To install this plugin, first untar Quisk version 3.6.22.
+1) To install this plugin, first untar Quisk version 3.6.3.
+1.a) verify that quisk will build and run before continuing.
 
-2) Next, replace quisk-3.6.22/setup.py file with the setup.py file provided by this repo.
+2) Next, replace quisk-3.6.3/setup.py file with the setup.py file provided by this repo.
 
-3) In addition, copy the rtlsdrpkg directory provided by this repo into the quisk-3.6.22 source tree.
+3) In addition, copy the rtlsdrpkg directory provided by this repo into the quisk-3.6.3 source tree.
 
 4) Also copy configuration file quisk_conf.py to ~/.quisk_conf.py.
 
