@@ -38,7 +38,7 @@ class Hardware(BaseHardware):
     def open(self):
         rtl_sdr.set_decimation(self.decimation)
         rtl_sdr.open_samples()
-        rtl_sdr.set_sample_rate(960000)
+        rtl_sdr.set_sample_rate(3800000)
         rtl_sdr.set_sampling_mode(self.sampling_mode)
         rtl_sdr.set_auto_gain()
 
