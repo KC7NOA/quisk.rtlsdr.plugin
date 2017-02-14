@@ -16,16 +16,18 @@ A Proof of Concept RTL2832u Plugin for the SDR Software Quisk
 
    a) run the command 'python setup.py install' to build and install Quisk, or
 
-   b) to test first, run the command 'python setup.py build' in the quisk-3.6.22 tree, then cd into build/lib.linux-x86_64-2.7/quisk and execute 'python quisk.py' to run Quisk.
+   b) to test first, run the command 'python setup.py build' in the quisk-3.6.3 tree, then cd into build/lib.linux-x86_64-2.7/quisk and execute 'python quisk.py' to run Quisk.
 
 Notes
 -----
 
 This POC was written for a Ubuntu computer and will 100% fail on Windows. 
 
-The RTLSDR is configured to use a fixed sampling rate of 960000 hertz.  Unfortunately since I could not get Quisk to support a sampling rate greater than 192000 hertz, the raw RTLSDR samples had to be decimated.
+The RTLSDR is configured to use a fixed sampling (display) rate of 960000 hertz.  Unfortunately since I could not get Quisk to support a sampling rate greater than 192000 hertz, the raw RTLSDR samples had to be decimated.
 
-To support Quisk sampling rates of 192000, 96000, and 48000 the raw samples are decimating by 5, 10, and 20 respectively.  By default Quisk uses a 48000 sampling rate.   This can be changed by editing the ~/.quisk_conf.py configuration file.  Support for direct sampling mode is also provided through the configuration file.
+KC7NOA: sample rate of RTL2838 is set to the max (3200000hz)-- changed in quisk_hardware.py from XXXX
+
+To support Quisk sampling Display rates of 192000, 96000, and 48000 the raw samples are decimating by 5, 10, and 20 respectively.  By default Quisk uses a 48000 sampling rate.   This can be changed by editing the ~/.quisk_conf.py configuration file.  Support for direct sampling mode is also provided through the configuration file.
 
 No filtering before decimation is performed.  I am not good enough at digital FIR filtering to know the best coefficients or number of taps to use.  I did experiments with a raised cosine filter with 5 taps but the results did not seem acceptable.  Please submit a pull request if you can help.
 
